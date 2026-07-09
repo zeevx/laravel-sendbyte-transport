@@ -1,0 +1,70 @@
+{
+    "name": "zeevx/laravel-sendbyte-transport",
+    "description": "A SendByte mail transport for Laravel - send mail through https://sendbyte.africa with Laravel's native mail system",
+    "keywords": [
+        "zeevx",
+        "laravel-sendbyte-transport",
+        "sendbyte",
+        "laravel",
+        "mail",
+        "email",
+        "transport",
+        "driver"
+    ],
+    "homepage": "https://github.com/zeevx/laravel-sendbyte-transport",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Paul Adams",
+            "email": "adamsohiani@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/http": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/mail": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "symfony/mailer": "^6.2|^7.0",
+        "symfony/mime": "^6.2|^7.0",
+        "guzzlehttp/guzzle": "^7.5",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0|^11.0",
+        "pestphp/pest": "^1.23|^2.0|^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zeevx\\SendByteTransport\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zeevx\\SendByteTransport\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "test-coverage": "pest --coverage",
+        "lint": "pint --test",
+        "format": "pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zeevx\\SendByteTransport\\SendByteTransportServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
