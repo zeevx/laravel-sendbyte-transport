@@ -2,6 +2,8 @@
 
 A [SendByte](https://sendbyte.africa) mail transport for Laravel. Set `MAIL_MAILER=sendbyte` and your existing Mailables, Notifications, and `Mail::` calls deliver through SendByte's transactional email API, no code changes required.
 
+Full SendByte documentation: [docs.sendbyte.africa](https://docs.sendbyte.africa)
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/zeevx/laravel-sendbyte-transport.svg?style=flat-square)](https://packagist.org/packages/zeevx/laravel-sendbyte-transport)
 [![Total Downloads](https://img.shields.io/packagist/dt/zeevx/laravel-sendbyte-transport.svg?style=flat-square)](https://packagist.org/packages/zeevx/laravel-sendbyte-transport)
 [![License](https://img.shields.io/packagist/l/zeevx/laravel-sendbyte-transport.svg?style=flat-square)](LICENSE.md)
@@ -57,7 +59,7 @@ The mailer accepts two optional settings:
 ],
 ```
 
-Your sending domain must be verified in your SendByte dashboard before live sends. Use an `sk_test_` sandbox key to exercise the full pipeline without delivering to real inboxes.
+Your sending domain must be [verified](https://docs.sendbyte.africa/guides/domains) in your SendByte dashboard before live sends. Use an `sk_test_` [sandbox](https://docs.sendbyte.africa/sandbox) key to exercise the full pipeline without delivering to real inboxes.
 
 ## Usage
 
@@ -91,7 +93,7 @@ Message metadata is delivered as `X-Metadata-*` headers.
 
 ### Idempotent sends
 
-SendByte deduplicates sends that share an idempotency key within 24 hours. Set one per message via the `X-SendByte-Idempotency-Key` header; the transport hoists it into the API's `idempotency_key` field:
+SendByte [deduplicates sends](https://docs.sendbyte.africa/guides/idempotency) that share an idempotency key within 24 hours. Set one per message via the `X-SendByte-Idempotency-Key` header; the transport hoists it into the API's `idempotency_key` field:
 
 ```php
 public function headers(): Headers
