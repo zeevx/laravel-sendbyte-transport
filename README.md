@@ -61,6 +61,23 @@ The mailer accepts two optional settings:
 
 Your sending domain must be [verified](https://docs.sendbyte.africa/guides/domains) in your SendByte dashboard before live sends. Use an `sk_test_` [sandbox](https://docs.sendbyte.africa/sandbox) key to exercise the full pipeline without delivering to real inboxes.
 
+### Sending from a different domain
+
+`MAIL_FROM_ADDRESS` applies to every mailer. When SendByte handles only part of your mail, or the domain you verified with SendByte is not the one the rest of your app sends from, give the mailer its own `from` block. Laravel reads a mailer's `from` in preference to the global one, so your other mailers are unaffected:
+
+```php
+'sendbyte' => [
+    'transport' => 'sendbyte',
+    'key' => env('SENDBYTE_API_KEY'),
+    'from' => [
+        'address' => env('SENDBYTE_FROM_ADDRESS', env('MAIL_FROM_ADDRESS')),
+        'name' => env('SENDBYTE_FROM_NAME', env('MAIL_FROM_NAME')),
+    ],
+],
+```
+
+Sending from an address whose domain is not verified fails with `domain_not_verified`, naming the domain it saw. That domain comes from the `from` address, so check which one applies to the mailer you are sending through.
+
 ## Usage
 
 Send mail exactly as you always do:
